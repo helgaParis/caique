@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Home from './contents/Home';
 import Photo from './contents/Photo';
 import Video from './contents/Video';
+// import Form from './contents/Form';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
   <Route path="/video">
   <Video />
   </Route>
+  {/* <Route path="/form">
+  <Form />
+  </Route> */}
   </div>
   </Router>
   )
