@@ -1,65 +1,58 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { username: '',
-                  firstname:'',
-                  usertext: '' };
-  }
-  myChangeHandlerUserName = (event) => {
-    this.setState({username: event.target.value});
-  }
-
-  myChangeHandlerFirstName = (event) => {
-    this.setState({firstname: event.target.value});
-  }
-
-  myChangeHandlerUserText = (event) => {
-    this.setState({usertext: event.target.value});
+ function Form() {
+  const [state, setState] = React.useState({
+    username: '',
+    firstname:'',
+    usertext: ''
+  })
+   
+  function ChangeHandler(event) {
+    const value = event.target.value;
+    setState({
+      ...state,
+      [event.target.name]: value
+    });
   }
 
-  mySubmitHandlerUserText = (event) => {
+  function SubmitHandler(event) {
     event.preventDefault();
-
-    alert('Envoi de : Nom= ' + this.state.username
-     + ', Prenom= ' + this.state.firstname 
-     + ', Commentaire= ' + this.state.usertext);
-
-     this.state = { username: '',
-                  firstname:'',
-                  usertext: '' };
+    alert('resultat: ' + state.username + ' ' + state.firstname + ' ' + state.usertext);
   }
+  
 
-  render() {
     return (
-      <form onSubmit={this.mySubmitHandlerUserText}> 
-      <h1>Hello {this.state.username} {this.state.firstname} {this.state.usertext}</h1>
+      <form onSubmit={SubmitHandler}> 
+      <h1>Hello {state.username} {state.firstname} {state.usertext}</h1>
       <p>Enter your name: </p>
       <input
         type='text'
-        onChange={this.myChangeHandlerUserName}
+        name='username'
+        value={state.username}
+        onChange={ChangeHandler}
       />
       <p>Enter your firstname: </p>
       <input
         type='text'
-        onChange={this.myChangeHandlerFirstName}
+        name='firstname'
+        value={state.firstname}
+        onChange={ChangeHandler}
       />
-      <label for="comment">Commentaire: 
-        <textarea 
-          id="comment" 
-          name="comment"
+      <label>Commentaire: 
+        <textarea
+          name="usertext"
           placeholder="Ecrivez un commentaire"
           rows="4" 
           cols="50" 
-          onChange={this.myChangeHandlerUserText}>
+          value={state.usertext}
+          onChange={ChangeHandler}>
         </textarea>
       </label>
       <input type="submit" value="Envoyer"></input>
       </form>
     );
-  }
 }
+
 
 
 

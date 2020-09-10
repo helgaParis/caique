@@ -8,7 +8,7 @@ render() {
         <div className="contentdiv home">
             <div>
             <p>Ceci est un site pour présenter Auguste, notre perroquet:</p>
-            <img src={cat1} className="chat1"></img>
+            <img src={cat1} alt="chat1" className="chat1"></img>
             </div>
             <div>
             <Form/>
